@@ -273,12 +273,8 @@ function ProductList({ onHomeClick }) {
         cart.forEach((item) => {
             totalItems = totalItems + item.quantity
         })
-        console.log("total items: " + totalItems)
         return totalItems
     }
-
-    console.log("added to cart")
-    console.log(addedToCart)
 
     return (
         <div>
@@ -330,9 +326,9 @@ function ProductList({ onHomeClick }) {
           <button
             className="product-button"
             onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
-            disabled={plant.name in addedToCart}
+            disabled={cart.some((item) => item.name == plant.name)}
           >
-            {plant.name in addedToCart ? "Added to cart" : "Add to cart"}
+            {cart.some((item) => item.name == plant.name) ? "Added to cart" : "Add to cart"}
           </button>
         </div>
       ))}
